@@ -1,5 +1,9 @@
 export class Dial {
 
+	#size;
+	#pos;
+	#count;
+
 	constructor(size, start) {
 		this.#size = size;
 		this.#pos = start;
