@@ -2,23 +2,23 @@ import fs from 'fs';
 
 export class FSWrapper {
     
-    #data;
     #filePath;
 
     constructor(filePath) {
         this.#filePath = filePath;
     }
 
-    get lines() {
-        return this.#data;
-    }
-
-    init() {
+    run() {
         fs.readFile(this.#filePath, 'utf8', (err, data) => {
             if (err) {
                 throw err;
             }
-            this.#data = data.split("\n");
+            let lines = data.split("\n");
+
+            lines.forEach((line) => {
+                callBack(line);
+            });
+
         });
 
     }
