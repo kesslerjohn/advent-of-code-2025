@@ -47,8 +47,6 @@ export class Dial {
             this.#count += 1;
         }
 
-        console.log(monitor);
-
 	}
 
 	get count() {
