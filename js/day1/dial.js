@@ -35,22 +35,40 @@ export class Dial {
         // always check how many full rotations we make
         this.#count += this.#countFullTurns(direction, this.#size);
 
-        // only check partial turns if we are not starting at 0
-        if (this.#pos !== 0) {
-
-            if (absolutePos < 0 || absolutePos > this.#size){
-                this.#count += 1;
-            }
-
-        }
-        
         // see where you landed
-        this.#pos = this.#mod(absolutePos, this.#size);
+        let end = this.#mod(absolutePos, this.#size);
 
-        // finally, if you land on 0, count that. 
         if (this.#pos === 0) {
-            this.#count += 1;
+
+            this.#pos = end;
+            return this.#pos;
         }
+
+        if (end === 0) {
+            this.#count += 1;
+
+            this.#pos = end;
+            return this.#pos;
+        }
+
+        switch (true) {
+            case (direction < 0):
+                if (end > this.#pos) {
+                    this.#count += 1;
+                }
+                break;
+
+            case (direction > 0):
+                if (end < this.#pos) {
+                    this.#count += 1;
+                }
+                break;
+            default:
+                break;
+        } 
+
+        this.#pos = end;
+        return this.#pos;
 
 	}
 
