@@ -24,6 +24,10 @@ export class Dial {
         return Math.floor(Math.abs(dividend)/divisor);
     }
 
+    #checkPartialClicks(dividend, divisor) {
+        return this.#mod(dividend, divisor);
+    }
+
 	turn(line) {
         let direction = this.#resolveDirection(line);
         let absolutePos = this.#pos + direction;
@@ -34,15 +38,16 @@ export class Dial {
         // only check partial turns if we are not starting at 0
         if (this.#pos !== 0) {
 
-            if (absolutePos < 0 || absolutePos >= this.#size+1){
+            if (absolutePos < 0 || absolutePos > this.#size){
                 this.#count += 1;
             }
 
         }
-
-        // finally, if you land on 0, count that. 
+        
+        // see where you landed
         this.#pos = this.#mod(absolutePos, this.#size);
 
+        // finally, if you land on 0, count that. 
         if (this.#pos === 0) {
             this.#count += 1;
         }
