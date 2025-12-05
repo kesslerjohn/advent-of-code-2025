@@ -2,6 +2,17 @@ import { BigNumber }  from 'bignumber.js';
 
 export class IDValidator {
 
+    // ideas for optimizations:
+    // - only check substrings whose length is a factor
+    //   of the length of the value
+
+    // - can also do this with regular math
+    //   with an algorithm to find the divisor...
+    //   i.e. if a given substring like '54' can divide
+    //   '5454', then there is some n (in this case 101) 
+    //   s.t. 54*n = 5454.
+    
+    
     let #sum;
 
     constructor() {
@@ -25,4 +36,12 @@ export class IDValidator {
             }
         }
     }
+
+    #validateRange(range) {
+        for (let i = range.low; i <= range.high; i++) {
+           this.#validateID(val.toString()); 
+        }
+    };
+
+    validateIDs() {};
 }
