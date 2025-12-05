@@ -17,12 +17,8 @@ import { IDValidator } from './validator.js';
 
         let ranges = data.split(",")
                         .map(splitRange);
+        console.log(validator.validateIDs(ranges).toString());
 
-        // get values in each range
-
-        // iterate over ranges to validate inputs
-
-        console.log(dial.count);
     });
     
 })();

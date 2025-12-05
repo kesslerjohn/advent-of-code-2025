@@ -1,4 +1,5 @@
-import { BigNumber }  from 'bignumber.js';
+import pkg from 'bignumber.js';
+const { BigNumber } = pkg;
 
 export class IDValidator {
 
@@ -11,16 +12,18 @@ export class IDValidator {
     //   i.e. if a given substring like '54' can divide
     //   '5454', then there is some n (in this case 101) 
     //   s.t. 54*n = 5454.
+    //
+    // - only need to check ranges with even lengths
     
+    #sum;
     
-    let #sum;
-
     constructor() {
         this.#sum = new BigNumber(0);
     }
 
     #stringDivisorInd(val, part){
         if (val.split(part).join('') == '') {
+            console.log(`${part} splits ${val}\n`);
             return true;
         }
         return false;
@@ -39,9 +42,12 @@ export class IDValidator {
 
     #validateRange(range) {
         for (let i = range.low; i <= range.high; i++) {
-           this.#validateID(val.toString()); 
+           this.#validateID(i.toString()); 
         }
     };
 
-    validateIDs() {};
+    validateIDs(rangesList) {
+        rangesList.map((range) => this.#validateRange(range));
+        return this.#sum;
+    };
 }
