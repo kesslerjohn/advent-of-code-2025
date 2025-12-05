@@ -1,4 +1,3 @@
-//import { FSWrapper } from '../file-reader.js';
 
 import { readFile } from 'fs';
 import { Dial } from './dial.js';
