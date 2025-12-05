@@ -7,7 +7,7 @@ import { IDValidator } from './validator.js';
 
     function splitRange(range) {
         let ends = range.split("-");
-        return { low: ends[0], high: [ends[1]] };
+        return { low: +(ends[0]), high: +(ends[1]) };
     }
 
     readFile('../../inputs/day2.txt', 'utf8', (err, data) => {

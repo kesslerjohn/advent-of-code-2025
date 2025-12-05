@@ -1,6 +1,11 @@
-export class IDValidator {
-    constructor() {
+import { BigNumber }  from 'bignumber.js';
 
+export class IDValidator {
+
+    let #sum;
+
+    constructor() {
+        this.#sum = new BigNumber(0);
     }
 
     #stringDivisorInd(val, part){
@@ -12,11 +17,10 @@ export class IDValidator {
 
     #validateID(val) {
         let part;
-        let sum = 0;
         for (let i = 1; i <= Math.floor(val.length/2); i++) {
             part = val.substr(0, i);
             if (this.#stringDivisorInd(val, part)) {
-                sum += +(val);
+                this.#sum = this.#sum.plus(val);
                 break;
             }
         }
