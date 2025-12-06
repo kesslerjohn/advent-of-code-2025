@@ -45,6 +45,11 @@ export class IDValidator {
     }
 
     #validateAnyID(val) {
+
+        if (val.length < 2) {
+            return;
+        }
+
         let part;
         for (let i = 1; i <= Math.floor(val.length/2); i++) {
             part = val.substr(0, i);
@@ -57,7 +62,7 @@ export class IDValidator {
 
     #validateRange(range) {
         for (let i = range.low; i <= range.high; i++) {
-           this.#validateEvenID(i.toString()); 
+            this.#validateAnyID(i.toString()); 
         }
     };
 
