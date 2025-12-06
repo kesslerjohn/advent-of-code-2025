@@ -29,7 +29,22 @@ export class IDValidator {
         return false;
     }
 
-    #validateID(val) {
+    #validateEvenID(val) {
+
+        if (val.length%2 !== 0) {
+            return;
+        }
+
+        let part = val.substr(0, val.length/2);
+
+        if (this.#stringDivisorInd(val, part)) {
+            this.#sum = this.#sum.plus(val);
+        }
+
+        return;
+    }
+
+    #validateAnyID(val) {
         let part;
         for (let i = 1; i <= Math.floor(val.length/2); i++) {
             part = val.substr(0, i);
@@ -42,7 +57,7 @@ export class IDValidator {
 
     #validateRange(range) {
         for (let i = range.low; i <= range.high; i++) {
-           this.#validateID(i.toString()); 
+           this.#validateEvenID(i.toString()); 
         }
     };
 
