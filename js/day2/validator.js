@@ -23,7 +23,6 @@ export class IDValidator {
 
     #stringDivisorInd(val, part){
         if (val.split(part).join('') == '') {
-            console.log(`${part} splits ${val}\n`);
             return true;
         }
         return false;
