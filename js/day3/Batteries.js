@@ -13,8 +13,13 @@ export function pickN(i, batteries, n = 2) {
         return [];
     }
 
-    pickN(i+1, batteries.slice(1, batteries.length), n-1);
-    
+    // path of choosing i
+    let include = [batteries[i]].concat(pickN(i+1, batteries.slice(1, batteries.length), n-1));
+
+    // path of not choosing i
+    let exclude = pickN(i+1, batteries.slice(1, batteries.length, n));
+
+    return arrMax(include, exclude);
 }
 
 function addable(arr) {
@@ -25,6 +30,11 @@ function addable(arr) {
     return arr;
 }
 
-function sum(arr) {
-    return arr.reduce((acc, ind) => { return acc + ind }, 0);
+function placeSum(arr) {
+    return addabble(arr).reduce((acc, ind) => { return acc + ind }, 0);
+}
+
+function arrMax(...arrs) {
+    let sums = arrs.map(placeSum);
+    return Math.max(...sums);
 }
