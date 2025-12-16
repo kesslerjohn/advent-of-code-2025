@@ -5,9 +5,9 @@ struct dial {
     int size;
     int pos;
     int count;
-}
+};
 
-struct dial * initDial(int size, int pos) {
+struct dial* initDial(int size, int pos) {
     struct dial res, *dp;
 
     res.size = size;
@@ -26,3 +26,5 @@ int countFullTurns(int dividend, int divisor) {
 int checkPartialClicks(int dividend, int divisor) {
     return dividend%divisor;
 }
+
+#endif
